@@ -6,7 +6,7 @@ import React from "react";
 
 export interface ProductCard {
     product: Product;
-    deleteHandler: (id: string) => void,
+    deleteHandler: (id: number) => void,
 }
 
 export function CatalogCard(props: ProductCard) {

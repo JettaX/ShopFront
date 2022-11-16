@@ -19,6 +19,6 @@ export const getProducts = apiGet('getProducts');
 
 export const getProductById = (id: string) =>  apiGet(`getProductsById/${id}`);
 
-export const deleteProductById = (id: string) => apiDelete('deleteProduct/' + id);
+export const deleteProductById = (id: number) => apiDelete('deleteProduct/' + id);
 
 export const createProduct = (product: newProduct) => apiPost('addProduct', product);

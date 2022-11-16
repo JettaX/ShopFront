@@ -1,5 +1,5 @@
 export interface Product {
-    id: string,
+    id: number,
     name: string,
     description: string,
     price: number,
@@ -14,7 +14,7 @@ export interface newProduct {
 }
 
 export let emptyProduct = {
-    id: '',
+    id: 0,
     name: '',
     description: '',
     price: 0,

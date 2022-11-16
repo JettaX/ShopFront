@@ -21,7 +21,7 @@ export function Catalog() {
         }, [load.isLoad]
     );
 
-    function deleteHandler(id: string) {
+    function deleteHandler(id: number) {
         deleteProductById(id).then(r => {
                 if (r.status === 200) {
                     setProducts({products: Products.products.filter(product => product.id !== id)});
