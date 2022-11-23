@@ -1,10 +1,11 @@
 import {ProductPageTitleCard} from "./ProductPageTitleCard";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {emptyProduct, Product} from "../interfaces";
 import {getProductById, getProducts} from "../api/api";
 import {useParams} from "react-router-dom";
 import {ProductPageDescriptionCard} from "./ProductPageDescriptionCard";
 import {ProductPageBuy} from "./ProductPageBuy";
+import {FunctionalPanelOnCatalogCard} from "./FunctionalPanelOnCatalogCard";
 
 export interface ProductCard {
     product: Product;
@@ -20,7 +21,6 @@ export function ProductPage() {
     let {id} = useParams();
 
     useEffect(() => {
-            console.log(id)
             if (!load.isLoad && id !== undefined) {
                 getProductById(id).then((product) => {
                     setProduct({product: product.data});
@@ -33,6 +33,7 @@ export function ProductPage() {
     return (
         <div className="m-2">
             <div className="row align-items-start">
+                <FunctionalPanelOnCatalogCard productId={Product.product.id}/>
                 <div className="col flex-grow-1">
                     <ProductPageTitleCard product={Product.product}/>
                 </div>

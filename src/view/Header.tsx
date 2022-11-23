@@ -7,6 +7,7 @@ import {ProductCreator} from "./ProductCreator";
 import {ProductPage} from "./ProductPage";
 import {OverlayTrigger} from "react-bootstrap";
 import defaultProps = OverlayTrigger.defaultProps;
+import {Orders} from "./Orders";
 
 export function Header() {
     return (
@@ -51,6 +52,7 @@ export function Header() {
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/addProduct" element={<ProductCreator/>}/>
                 <Route path="/product/:name/:id" element={<ProductPage/>}/>
+                <Route path="/profile/orders" element={<Orders/>}/>
             </Routes>
         </div>
     )

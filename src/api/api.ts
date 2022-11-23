@@ -9,16 +9,20 @@ const config = {
     }
 };
 
-const apiGet = (method: string) => axios.get(`http://localhost:8081/api/product/${method}`, config);
+const apiGet = (method: string) => axios.get(`http://localhost:8081/api/${method}`, config);
 
-const apiPost = (method: string, customConfig: object) => axios.post(`http://localhost:8081/api/product/${method}`, customConfig);
+const apiPost = (method: string, customConfig: object) => axios.post(`http://localhost:8081/api/${method}`, customConfig);
 
-const apiDelete = (method: string) => axios.delete(`http://localhost:8081/api/product/${method}`, config);
+const apiDelete = (method: string) => axios.delete(`http://localhost:8081/api/${method}`, config);
 
-export const getProducts = apiGet('getProducts');
+export const getProducts = apiGet('product/getProducts');
 
-export const getProductById = (id: string) =>  apiGet(`getProductsById/${id}`);
+export const getUserOrders = (userId: number) => apiGet(`orders/getUserOrders/${userId}`);
 
-export const deleteProductById = (id: number) => apiDelete('deleteProduct/' + id);
+export const getCountOfBought = (productId: number) => apiGet(`orders/getCountOfBought/${productId}`);
 
-export const createProduct = (product: newProduct) => apiPost('addProduct', product);
+export const getProductById = (id: string) =>  apiGet(`product/getProductsById/${id}`);
+
+export const deleteProductById = (id: number) => apiDelete('product/deleteProduct/' + id);
+
+export const createProduct = (product: newProduct) => apiPost('product/addProduct', product);

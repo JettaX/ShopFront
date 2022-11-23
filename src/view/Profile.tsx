@@ -1,5 +1,10 @@
+import {Orders} from "./Orders";
+import {Link} from "react-router-dom";
+
 export function Profile() {
     return (
-        <div></div>
+        <ul className="list-group list-group-flush">
+            <Link to="/profile/orders" className="list-group-item">Orders</Link>
+        </ul>
     )
 }
