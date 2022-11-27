@@ -10,7 +10,16 @@ const axiosCustom = axios.create({
     },
 });
 
-export const getProducts = (filter: Filter) => axiosCustom.post('product/getProducts', filter);
+export const getProducts = (filter: Filter, offset: number, limit: number) => axiosCustom('product/getProducts', {
+    method: 'post',
+    data: filter,
+    params: {
+        offset: offset,
+        limit: limit
+    },
+});
+
+export const getCountProducts = (filter: Filter) => axiosCustom.post('product/getCountProducts', filter);
 
 export const getUserOrders = (userId: number) => axiosCustom.get(`orders/getUserOrders/${userId}`);
 
