@@ -44,6 +44,15 @@ export let emptyOrder = {
     products: Array.of(emptyBoughtProduct),
 }
 
+export interface Filter {
+    maxValue: number,
+    minValue: number,
+}
+
+export let defaultFilter = {
+    maxValue: 2147483647,
+    minValue: 0,
+}
 
 export interface Cart {
     products: Array<Product>,

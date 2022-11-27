@@ -1,28 +1,23 @@
-import axios from "axios";
-import {newProduct} from "../interfaces";
-import {stringify} from "querystring";
+import axios, {Axios} from "axios";
+import {defaultFilter, Filter, newProduct} from "../interfaces";
 
-const config = {
+const axiosCustom = axios.create({
+    baseURL: 'http://localhost:8081/api/',
+    timeout: 1000,
     headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-    }
-};
+    },
+});
 
-const apiGet = (method: string) => axios.get(`http://localhost:8081/api/${method}`, config);
+export const getProducts = (filter: Filter) => axiosCustom.post('product/getProducts', filter);
 
-const apiPost = (method: string, customConfig: object) => axios.post(`http://localhost:8081/api/${method}`, customConfig);
+export const getUserOrders = (userId: number) => axiosCustom.get(`orders/getUserOrders/${userId}`);
 
-const apiDelete = (method: string) => axios.delete(`http://localhost:8081/api/${method}`, config);
+export const getCountOfBought = (productId: number) => axiosCustom.get(`orders/getCountOfBought/${productId}`);
 
-export const getProducts = apiGet('product/getProducts');
+export const getProductById = (id: string) => axiosCustom.get(`product/getProductsById/${id}`);
 
-export const getUserOrders = (userId: number) => apiGet(`orders/getUserOrders/${userId}`);
+export const deleteProductById = (id: number) => axiosCustom.delete('product/deleteProduct/' + id);
 
-export const getCountOfBought = (productId: number) => apiGet(`orders/getCountOfBought/${productId}`);
-
-export const getProductById = (id: string) =>  apiGet(`product/getProductsById/${id}`);
-
-export const deleteProductById = (id: number) => apiDelete('product/deleteProduct/' + id);
-
-export const createProduct = (product: newProduct) => apiPost('product/addProduct', product);
+export const createProduct = (product: newProduct) => axiosCustom.post('product/addProduct', product);

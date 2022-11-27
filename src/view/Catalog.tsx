@@ -1,24 +1,28 @@
 import React, {useEffect, useState} from "react";
-import {emptyProduct} from "../interfaces";
+import {defaultFilter, emptyProduct, Filter} from "../interfaces";
 import {deleteProductById, getProducts} from "../api/api";
 import {CatalogCard} from "./CatalogCard";
+import {CatalogFilter} from "./CatalogFilter";
 
 export function Catalog() {
     const [Products, setProducts] = useState({
         products: Array.of(emptyProduct),
     })
-    const [load, setLoad] = useState({
-        isLoad: false,
-    });
+    const [Filter, setFilter] = useState({
+        filter: defaultFilter,
+    })
+
+    function filterChanged(filter: Filter) {
+        setFilter({
+            filter: filter,
+        })
+    }
 
     useEffect(() => {
-            if (!load.isLoad) {
-                getProducts.then((products) => {
+                getProducts(Filter.filter).then((products) => {
                     setProducts({products: products.data});
                 })
-                setLoad({isLoad: true});
-            }
-        }, [load.isLoad]
+        }, [Filter.filter]
     );
 
     function deleteHandler(id: number) {
@@ -31,11 +35,16 @@ export function Catalog() {
     }
 
     return (
-        <div className="container-fluid">
-            <div className="row justify-content-center">
-                {Products.products.map((product) => (
-                    <CatalogCard product={product} deleteHandler={deleteHandler} key={product.id}></CatalogCard>
-                ))}
+        <div className="d-flex">
+            <div className="flex-grow-0" style={{maxWidth: "12rem"}}>
+                <CatalogFilter filterHandler={filterChanged} filter={Filter.filter}/>
+            </div>
+            <div className="container-fluid flex-grow-1">
+                <div className="row justify-content-center">
+                    {Products.products.map((product) => (
+                        <CatalogCard product={product} deleteHandler={deleteHandler} key={product.id}></CatalogCard>
+                    ))}
+                </div>
             </div>
         </div>
     );

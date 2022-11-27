@@ -1,12 +1,11 @@
-import {Link, Route, Router, Routes} from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 import {Catalog} from "./Catalog";
 import {Home} from "./Home";
 import {Cart} from "./Cart";
 import {Profile} from "./Profile";
 import {ProductCreator} from "./ProductCreator";
 import {ProductPage} from "./ProductPage";
-import {OverlayTrigger} from "react-bootstrap";
-import defaultProps = OverlayTrigger.defaultProps;
+
 import {Orders} from "./Orders";
 
 export function Header() {
