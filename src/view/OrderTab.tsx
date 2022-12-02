@@ -1,4 +1,4 @@
-import {Order, Product} from "../interfaces";
+import {Order} from "../interfaces";
 import {OrderCard} from "./OrderCard";
 
 export interface OrderProps {

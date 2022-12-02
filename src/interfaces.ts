@@ -38,6 +38,7 @@ export interface Order {
     user: any,
     products: Array<BoughtProduct>,
 }
+
 export let emptyOrder = {
     id: -1,
     user: "",
@@ -45,13 +46,46 @@ export let emptyOrder = {
 }
 
 export interface Filter {
-    maxValue: number,
-    minValue: number,
+    maxPrice: number,
+    minPrice: number,
 }
 
 export let defaultFilter = {
-    maxValue: 2147483647,
-    minValue: 0,
+    maxPrice: 2147483647,
+    minPrice: 1,
+}
+
+export let defaultPageProduct: PageProduct = {
+    content: Array.of(emptyProduct)
+}
+
+export interface PageProduct {
+    content?: Array<Product>,
+    pageable?: {
+        sort: {
+            empty: boolean,
+            sorted: boolean,
+            unsorted: boolean
+        },
+        offset: number,
+        pageSize: number,
+        pageNumber: number,
+        paged: boolean,
+        unpaged: boolean
+    },
+    last?: boolean,
+    totalElements?: number,
+    totalPages?: number,
+    size?: number,
+    number?: number,
+    sort?: {
+        empty: boolean,
+        sorted: boolean,
+        unsorted: boolean
+    },
+    first?: boolean,
+    numberOfElements?: number,
+    empty?: boolean
 }
 
 export interface Cart {

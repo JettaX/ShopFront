@@ -1,8 +1,8 @@
-import axios, {Axios} from "axios";
-import {defaultFilter, Filter, newProduct} from "../interfaces";
+import axios from "axios";
+import {Filter, newProduct} from "../interfaces";
 
-const axiosCustom = axios.create({
-    baseURL: 'http://localhost:8081/api/',
+const axiosCustom = (baseUrl: string) => axios.create({
+    baseURL: baseUrl,
     timeout: 1000,
     headers: {
         "Access-Control-Allow-Origin": "*",
@@ -10,23 +10,27 @@ const axiosCustom = axios.create({
     },
 });
 
-export const getProducts = (filter: Filter, offset: number, limit: number) => axiosCustom('product/getProducts', {
-    method: 'post',
-    data: filter,
+const products = axiosCustom('http://localhost:8081/api/products');
+const orders = axiosCustom('http://localhost:8081/api/orders');
+
+export const getProducts = (filter: Filter, page: number, limit: number) => products('', {
+    method: 'get',
     params: {
-        offset: offset,
-        limit: limit
+        maxPrice: filter.maxPrice,
+        minPrice: filter.minPrice,
+        page: page,
+        limit: limit,
     },
 });
 
-export const getCountProducts = (filter: Filter) => axiosCustom.post('product/getCountProducts', filter);
+export const getCountProducts = (filter: Filter) => products.post('/getCountProducts', filter);
 
-export const getUserOrders = (userId: number) => axiosCustom.get(`orders/getUserOrders/${userId}`);
+export const getUserOrders = (userId: number) => orders.get(`/getUserOrders/${userId}`);
 
-export const getCountOfBought = (productId: number) => axiosCustom.get(`orders/getCountOfBought/${productId}`);
+export const getCountOfBought = (productId: number) => orders.get(`/getCountOfBought/${productId}`);
 
-export const getProductById = (id: string) => axiosCustom.get(`product/getProductsById/${id}`);
+export const getProductById = (id: string) => products.get(id);
 
-export const deleteProductById = (id: number) => axiosCustom.delete('product/deleteProduct/' + id);
+export const deleteProductById = (id: number) => products.delete(id.toString());
 
-export const createProduct = (product: newProduct) => axiosCustom.post('product/addProduct', product);
+export const createProduct = (product: newProduct) => products.post('', product);

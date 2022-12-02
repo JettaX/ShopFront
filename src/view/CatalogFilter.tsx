@@ -7,16 +7,16 @@ interface CatalogFilterProps {
 }
 
 export function CatalogFilter(props: CatalogFilterProps) {
-    const [minValue, setMinValue] = useState(defaultFilter.minValue)
-    const [maxValue, setMaxValue] = useState(defaultFilter.maxValue)
+    const [minPrice, setMinPrice] = useState(defaultFilter.minPrice)
+    const [maxPrice, setMaxPrice] = useState(defaultFilter.maxPrice)
 
     useEffect(() => {
             props.filterHandler({
-                minValue: minValue,
-                maxValue: maxValue,
+                minPrice: minPrice,
+                maxPrice: maxPrice,
             });
 
-        }, [minValue, maxValue]
+        }, [minPrice, maxPrice]
     );
 
     return (
@@ -24,12 +24,12 @@ export function CatalogFilter(props: CatalogFilterProps) {
             <div className="input-group mb-3">
                 <span className="input-group-text">min price</span>
                 <input type="number" className="form-control" min={0}
-                       onChange={(event) => filterChanged(event.target.valueAsNumber, defaultFilter.minValue, setMinValue)}/>
+                       onChange={(event) => filterChanged(event.currentTarget.valueAsNumber, defaultFilter.minPrice, setMinPrice)}/>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text">max price</span>
                 <input type="number" className="form-control" min={0}
-                       onChange={(event) => filterChanged(event.target.valueAsNumber, defaultFilter.maxValue, setMaxValue)}/>
+                       onChange={(event) => filterChanged(event.currentTarget.valueAsNumber, defaultFilter.maxPrice, setMaxPrice)}/>
             </div>
         </div>
     )

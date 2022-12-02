@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {emptyOrder, emptyProduct} from "../interfaces";
-import {getProducts, getUserOrders} from "../api/api";
+import {emptyOrder} from "../interfaces";
+import {getUserOrders} from "../api/api";
 import {OrderTab} from "./OrderTab";
 
 export function Orders() {
