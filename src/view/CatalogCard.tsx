@@ -1,14 +1,24 @@
-import {Product} from "../interfaces";
-import {addItemToCart} from "../cart/CartUtil";
+import {CartItem, emptyCartItem, Product} from "../interfaces";
 import {Link} from "react-router-dom";
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {addItemToCart, isExistInCart} from "../api/CartApi";
 
 export interface ProductCard {
     product: Product;
     deleteHandler: (id: number) => void,
 }
 
+const item = (product: Product): CartItem => {
+    return {
+        product: product,
+        quantity: 1,
+    }
+}
+
 export function CatalogCard(props: ProductCard) {
+    const [isCart, setIsCart] = useState(isExistInCart(props.product));
+    const [ItemCart, setItemCart] = useState(item(props.product));
+
     return (
             <div className="card row m-2" style={{width: "18rem"}}>
                 <div className="row flex-grow-1 align-self-center">
@@ -23,7 +33,8 @@ export function CatalogCard(props: ProductCard) {
                     <b className="card-subtitle">{props.product.price} rub</b>
                     <p className="card-text">{props.product.description.slice(0, 50)}</p>
                     <div className="d-flex justify-content-between">
-                        <button className="btn btn-primary" onClick={() => addItemToCart(props.product)}>to cart</button>
+                        <button className="btn btn-primary" hidden={isCart} onClick={() => {addItemToCart(ItemCart); setIsCart(true)}}>add to cart</button>
+                        <Link to="/cart" className="btn btn-success" hidden={!isCart}>in cart</Link>
                         <button className="btn btn-danger" onClick={() => props.deleteHandler(props.product.id)}>delete</button>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ export interface newProduct {
     image: string,
 }
 
-export let emptyProduct = {
+export let emptyProduct: Product = {
     id: -1,
     name: '',
     description: '',
@@ -27,7 +27,7 @@ export let emptyProduct = {
     image: '',
 }
 
-export let emptyBoughtProduct = {
+export let emptyBoughtProduct: BoughtProduct = {
     id: -1,
     product: emptyProduct,
     price: -1,
@@ -39,7 +39,7 @@ export interface Order {
     products: Array<BoughtProduct>,
 }
 
-export let emptyOrder = {
+export let emptyOrder: Order = {
     id: -1,
     user: "",
     products: Array.of(emptyBoughtProduct),
@@ -50,7 +50,7 @@ export interface Filter {
     minPrice: number,
 }
 
-export let defaultFilter = {
+export let defaultFilter: Filter = {
     maxPrice: 2147483647,
     minPrice: 1,
 }
@@ -88,11 +88,25 @@ export interface PageProduct {
     empty?: boolean
 }
 
+export interface CartItem {
+    product: Product,
+    quantity: number,
+}
+
+export const emptyCartItem: CartItem = {
+    product: emptyProduct,
+    quantity: 0,
+}
+
 export interface Cart {
-    products: Array<Product>,
+    products: Array<CartItem>,
+}
+
+export const emptyCart: Cart = {
+    products: Array.of(),
 }
 
 export interface CartTransfer {
     userId: number,
-    products: Array<Product>,
+    products: Array<CartItem>,
 }

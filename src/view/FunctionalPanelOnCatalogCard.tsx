@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getCountOfBought} from "../api/api";
+import {getCountOfBought} from "../api/OrderApi";
 
 interface FunctionalPanelOnCatalogCardProps {
     productId: number,

@@ -1,6 +1,20 @@
-import {getCart} from "../cart/CartUtil";
+import {Cart} from "../interfaces";
 
-export function CartBuyForm() {
+interface CartBuyFormProps {
+    cart: Cart,
+}
+
+export function CartBuyForm(props: CartBuyFormProps) {
+    function getTotalPrice() {
+        if (props.cart.products.length < 1) {
+            return 0;
+        }
+        return props.cart.products
+            .map(product => product.product.price * product.quantity)
+            .reduce((previousValue: number, currentValue: number) =>
+                previousValue + currentValue).valueOf();
+    }
+
     return (
         <div className="card text-center" style={{width: "10rem;"}}>
             <div className="card-body">
@@ -10,12 +24,4 @@ export function CartBuyForm() {
             </div>
         </div>
     );
-}
-
-function getTotalPrice () {
-    const cart = getCart();
-    if (cart.length < 1) {
-        return 0;
-    }
-    return getCart().map(product => product.price).reduce((previousValue: number, currentValue: number) => previousValue + currentValue).valueOf();
 }

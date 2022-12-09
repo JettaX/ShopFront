@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {defaultFilter, emptyProduct, Filter} from "../interfaces";
-import {deleteProductById, getProducts} from "../api/api";
 import {CatalogCard} from "./CatalogCard";
 import {CatalogFilter} from "./CatalogFilter";
 import {CatalogPagination} from "./CatalogPagination";
+import {deleteProductById, getProducts} from "../api/ProductApi";
 
 const DEFAULT_PAGE = 0;
 const DEFAULT_PAGES = 1;

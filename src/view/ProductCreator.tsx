@@ -1,7 +1,6 @@
 import {Field, Form, Formik} from "formik";
-import {createProduct} from "../api/api";
 import {newProduct} from "../interfaces";
-import {CatalogCard} from "./CatalogCard";
+import {createProduct} from "../api/ProductApi";
 
 export function ProductCreator() {
     return (

@@ -1,4 +1,3 @@
-import {Orders} from "./Orders";
 import {Link} from "react-router-dom";
 
 export function Profile() {

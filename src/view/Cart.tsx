@@ -1,28 +1,40 @@
-import {getCart} from "../cart/CartUtil";
-import {CartItem} from "./CartItem";
+import {CartCard} from "./CartCard";
 import {CartBuyForm} from "./CartBuyForm";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {emptyCart} from "../interfaces";
+import {getCart} from "../api/CartApi";
 
 export function Cart() {
-    const [Products, setProducts] = useState({
-        products: getCart(),
-    })
+    const [cart, setCart] = useState(emptyCart)
+    const [isDone, setIsDone] = useState(false)
+
+    useEffect(() => {
+        if (!isDone) {
+            getCart().then(data => {
+                    if (data.data != null) {
+                        setCart(data.data);
+                    }
+                }
+            )
+            setIsDone(true);
+        }
+    }, [isDone])
 
     function onReloadContext() {
-        setProducts({products: getCart()});
+        setIsDone(false);
     }
 
-    console.log(getCart());
     return (<div className="container text-center">
         <h1>Cart</h1>
         <div className="row align-items-start">
             <div className="col">
                 {
-                    Products.products.map(product => <CartItem onReloadCart={onReloadContext} product={product} key={product.id}/>)
+                    cart.products.map(product =>
+                        <CartCard onReloadCart={onReloadContext} product={product} key={product.product.id}/>)
                 }
             </div>
             <div className="col-2">
-                <CartBuyForm/>
+                <CartBuyForm cart={cart}/>
             </div>
         </div>
     </div>)

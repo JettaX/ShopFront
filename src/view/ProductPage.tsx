@@ -1,11 +1,11 @@
 import {ProductPageTitleCard} from "./ProductPageTitleCard";
 import React, {useEffect, useState} from "react";
 import {emptyProduct, Product} from "../interfaces";
-import {getProductById, getProducts} from "../api/api";
 import {useParams} from "react-router-dom";
 import {ProductPageDescriptionCard} from "./ProductPageDescriptionCard";
 import {ProductPageBuy} from "./ProductPageBuy";
 import {FunctionalPanelOnCatalogCard} from "./FunctionalPanelOnCatalogCard";
+import {getProductById} from "../api/ProductApi";
 
 export interface ProductCard {
     product: Product;

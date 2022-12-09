@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import {emptyOrder} from "../interfaces";
-import {getUserOrders} from "../api/api";
 import {OrderTab} from "./OrderTab";
+import {getUserOrders} from "../api/OrderApi";
+import {getUserId} from "../api/UserApi";
 
 export function Orders() {
     const [Orders, setOrders] = useState({
@@ -13,7 +14,7 @@ export function Orders() {
 
     useEffect(() => {
             if (!load.isLoad) {
-                getUserOrders(1).then((orders) => {
+                getUserOrders(getUserId()).then((orders) => {
                     console.log(orders.data)
                     setOrders({orders: orders.data});
                 })
