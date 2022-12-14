@@ -1,8 +1,9 @@
 import {CartItem, Product} from "../interfaces";
 import {getUserId} from "./UserApi";
 import {axiosCustom} from "./AxiosConfig";
+import {getToken} from "../util/TokenUtil";
 
-const cart = axiosCustom('http://localhost:8081/api/cart');
+const cart = axiosCustom('http://localhost:8081/api/cart', getToken());
 
 export const addItemToCart = (product: CartItem) => cart.post(`/${getUserId()}`, product);
 

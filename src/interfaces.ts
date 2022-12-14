@@ -110,3 +110,25 @@ export interface CartTransfer {
     userId: number,
     products: Array<CartItem>,
 }
+
+export interface User {
+    id: number,
+    name: string,
+    surname: string,
+    roles: Array<Role>,
+}
+
+export const defaultUser: User = {
+    id: 0,
+    name: '',
+    surname: '',
+    roles: Array.of({
+        id: 0,
+        name: '',
+    }),
+}
+
+export interface Role {
+    id: number,
+    name: string,
+}
