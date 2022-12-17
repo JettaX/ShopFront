@@ -2,13 +2,16 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from "react-router-dom";
 import {Header} from "./view/Header";
-import {AuthProvider} from "./util/Auth";
+import {AuthProvider} from "./auth/Auth";
+import {RoleProvider} from "./auth/Role";
 
 function App() {
     return (
         <BrowserRouter>
             <AuthProvider>
-                <Header/>
+                <RoleProvider>
+                    <Header/>
+                </RoleProvider>
             </AuthProvider>
         </BrowserRouter>
     )

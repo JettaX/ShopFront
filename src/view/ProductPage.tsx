@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {ProductPageDescriptionCard} from "./ProductPageDescriptionCard";
 import {ProductPageBuy} from "./ProductPageBuy";
 import {FunctionalPanelOnCatalogCard} from "./FunctionalPanelOnCatalogCard";
-import {getProductById} from "../api/ProductApi";
+import {apiGetProductById} from "../api/ProductApi";
 
 export interface ProductCard {
     product: Product;
@@ -22,7 +22,7 @@ export function ProductPage() {
 
     useEffect(() => {
             if (!load.isLoad && id !== undefined) {
-                getProductById(id).then((product) => {
+                apiGetProductById(id).then((product) => {
                     setProduct({product: product.data});
                 })
                 setLoad({isLoad: true});

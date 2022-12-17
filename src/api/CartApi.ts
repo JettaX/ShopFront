@@ -1,20 +1,21 @@
 import {CartItem, Product} from "../interfaces";
-import {getUserId} from "./UserApi";
+import {apiGetUserId} from "./UserApi";
 import {axiosCustom} from "./AxiosConfig";
 import {getToken} from "../util/TokenUtil";
+import {getUser} from "../util/UserUtil";
 
 const cart = axiosCustom('http://localhost:8081/api/cart', getToken());
 
-export const addItemToCart = (product: CartItem) => cart.post(`/${getUserId()}`, product);
+export const apiAddItemToCart = (product: CartItem) => cart.post(`/${getUser()?.id}`, product);
 
-export const updateQuantity = (product: CartItem, quantity: number) => cart.patch(`/${getUserId()}/${product.product.id}/${quantity}`)
+export const apiUpdateQuantity = (product: CartItem, quantity: number) => cart.patch(`/${getUser()?.id}/${product.product.id}/${quantity}`)
 
-export const clearCart = () => cart.delete(`/clear/${getUserId()}`);
+export const apiClearCart = () => cart.delete(`/clear/${getUser()?.id}`);
 
-export const getCart = () => cart.get(`/${getUserId()}`);
+export const apiGetCart = () => cart.get(`/${getUser()?.id}`);
 
-export const removeItem = (product: Product) => cart.delete(`/${getUserId()}/${product.id}`);
+export const apiRemoveItem = (product: Product) => cart.delete(`/${getUser()?.id}/${product.id}`);
 
-export function isExistInCart(product: Product): boolean {
+export function apiIsExistInCart(product: Product): boolean {
     return false;
 }

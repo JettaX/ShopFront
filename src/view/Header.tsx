@@ -8,15 +8,17 @@ import {ProductPage} from "./ProductPage";
 
 import {Orders} from "./Orders";
 import {Login} from "./Login";
-import {AuthProvider, RequireAuth, useAuth} from "../util/Auth";
+import {RequireAuth, useAuth} from "../auth/Auth";
 import {Logout} from "./Logout";
 import {FunctionMenu} from "./FunctionMenu";
 import {FunctionMenuAllUsers} from "./FunctionMenuAllUsers";
 import {FunctionMenuProductChanger} from "./FunctionMenuProductChanger";
 import {FunctionMenuProductChangerForm} from "./FunctionMenuProductChangerForm";
+import {RequireRoleADMIN, useRole} from "../auth/Role";
 
 export function Header() {
     let auth = useAuth();
+    let role = useRole();
 
     return (
         <div>
@@ -30,7 +32,7 @@ export function Header() {
                             <Link className="nav-link" to="/catalog">
                                 Catalog
                             </Link>
-                            <Link className="nav-link" to="/function/menu">
+                            <Link className="nav-link" hidden={!role.isAdmin} to="/function/menu">
                                 function
                             </Link>
                         </div>
@@ -50,31 +52,65 @@ export function Header() {
                             Profile
                         </Link>
                         <Link className="nav-link" to={!auth.isAuth ? "/login" : "/logout"}>
-                            {!auth.isAuth ? "Login" : "Logout" }
+                            {!auth.isAuth ? "Login" : "Logout"}
                         </Link>
                     </div>
                 </div>
             </nav>
 
-                <Routes>
-                    <Route>
-                        <Route path="/home" element={<Home/>}/>
-                        <Route path="/login" element={<Login/>}/>
-                    </Route>
-                    <Route>
-                        <Route path="/logout" element={<RequireAuth><Logout/></RequireAuth>}/>
-                        <Route path="/catalog" element={<RequireAuth><Catalog/></RequireAuth>}/>
-                        <Route path="/function/menu" element={<RequireAuth><FunctionMenu/></RequireAuth>}/>
-                        <Route path="/function/menu/addProduct" element={<RequireAuth><ProductCreator/></RequireAuth>}/>
-                        <Route path="/function/menu/productChanger" element={<RequireAuth><FunctionMenuProductChanger/></RequireAuth>}/>
-                        <Route path="/function/menu/productChanger/:id" element={<RequireAuth><FunctionMenuProductChangerForm/></RequireAuth>}/>
-                        <Route path="/function/menu/allUsers" element={<RequireAuth><FunctionMenuAllUsers/></RequireAuth>}/>
-                        <Route path="/cart" element={<RequireAuth><Cart/></RequireAuth>}/>
-                        <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
-                        <Route path="/product/:name/:id" element={<RequireAuth><ProductPage/></RequireAuth>}/>
-                        <Route path="/profile/orders" element={<RequireAuth><Orders/></RequireAuth>}/>
-                    </Route>
-                </Routes>
+            <Routes>
+
+                {/*public rotes*/}
+                <Route>
+                    <Route path="/home" element={<Home/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/catalog" element={<Catalog/>}/>
+                </Route>
+
+                {/*auth and has any private roles rotes*/}
+                <Route>
+                    <Route path="/function/menu" element={
+                        <RequireAuth>
+                            <RequireRoleADMIN>
+                                <FunctionMenu/>
+                            </RequireRoleADMIN>
+                        </RequireAuth>
+                    }/>
+                    <Route path="/function/menu/addProduct" element={
+                        <RequireAuth>
+                            <RequireRoleADMIN>
+                                <ProductCreator/>
+                            </RequireRoleADMIN>
+                        </RequireAuth>}/>
+                    <Route path="/function/menu/productChanger" element={
+                        <RequireAuth>
+                            <RequireRoleADMIN>
+                                <FunctionMenuProductChanger/>
+                            </RequireRoleADMIN>
+                        </RequireAuth>}/>
+                    <Route path="/function/menu/productChanger/:id" element={
+                        <RequireAuth>
+                            <RequireRoleADMIN>
+                                <FunctionMenuProductChangerForm/>
+                            </RequireRoleADMIN>
+                        </RequireAuth>}/>
+                    <Route path="/function/menu/allUsers" element={
+                        <RequireAuth>
+                            <RequireRoleADMIN>
+                                <FunctionMenuAllUsers/>
+                            </RequireRoleADMIN>
+                        </RequireAuth>}/>
+                </Route>
+
+                {/*auth rotes*/}
+                <Route>
+                    <Route path="/logout" element={<RequireAuth><Logout/></RequireAuth>}/>
+                    <Route path="/cart" element={<RequireAuth><Cart/></RequireAuth>}/>
+                    <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
+                    <Route path="/product/:name/:id" element={<RequireAuth><ProductPage/></RequireAuth>}/>
+                    <Route path="/profile/orders" element={<RequireAuth><Orders/></RequireAuth>}/>
+                </Route>
+            </Routes>
         </div>
     )
 }

@@ -1,7 +1,8 @@
 import {CartItem, emptyCartItem, Product} from "../interfaces";
 import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {addItemToCart, isExistInCart} from "../api/CartApi";
+import {apiAddItemToCart, apiIsExistInCart} from "../api/CartApi";
+import {useAuth} from "../auth/Auth";
 
 export interface ProductCard {
     product: Product;
@@ -18,8 +19,9 @@ const item = (product: Product): CartItem => {
 }
 
 export function CatalogCard(props: ProductCard) {
-    const [isCart, setIsCart] = useState(isExistInCart(props.product));
+    const [isCart, setIsCart] = useState(apiIsExistInCart(props.product));
     const [ItemCart, setItemCart] = useState(item(props.product));
+    let auth = useAuth();
 
     return (
         <div className="card row m-2" style={{width: "18rem"}}>
@@ -35,8 +37,8 @@ export function CatalogCard(props: ProductCard) {
                 <b className="card-subtitle">{props.product.price} rub</b>
                 <p className="card-text">{props.product.description.slice(0, 50)}</p>
                 <div className="d-flex justify-content-between">
-                    <button className="btn btn-primary" hidden={isCart || props.isChanging} onClick={() => {
-                        addItemToCart(ItemCart);
+                    <button className="btn btn-primary" disabled={!auth.isAuth} hidden={isCart || props.isChanging} onClick={() => {
+                        apiAddItemToCart(ItemCart);
                         setIsCart(true)
                     }}>add to cart
                     </button>

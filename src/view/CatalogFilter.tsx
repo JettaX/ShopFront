@@ -20,18 +20,22 @@ export function CatalogFilter(props: CatalogFilterProps) {
     );
 
     return (
-        <div className="m-2">
-            <div className="input-group mb-3">
-                <span className="input-group-text">min price</span>
-                <input type="number" className="form-control" min={0}
-                       onChange={(event) => filterChanged(event.currentTarget.valueAsNumber, defaultFilter.minPrice, setMinPrice)}/>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text">max price</span>
-                <input type="number" className="form-control" min={0}
-                       onChange={(event) => filterChanged(event.currentTarget.valueAsNumber, defaultFilter.maxPrice, setMaxPrice)}/>
+        <div className="text-center d-flex flex-column">
+            <h5>Price</h5>
+            <div className="row">
+                <div className="input-group m-2">
+                    <span className="input-group-text">from</span>
+                    <input type="number" className="form-control" min={0}
+                           onChange={(event) => filterChanged(event.currentTarget.valueAsNumber, defaultFilter.minPrice, setMinPrice)}/>
+                </div>
+                <div className="input-group m-2">
+                    <span className="input-group-text">to</span>
+                    <input type="number" className="form-control" min={0}
+                           onChange={(event) => filterChanged(event.currentTarget.valueAsNumber, defaultFilter.maxPrice, setMaxPrice)}/>
+                </div>
             </div>
         </div>
+
     )
 }
 

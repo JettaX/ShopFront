@@ -8,8 +8,10 @@ export interface Product {
 
 export interface BoughtProduct {
     id: number,
-    product: Product,
+    productId: number,
+    name: string,
     price: number,
+    image: string,
 }
 
 export interface newProduct {
@@ -29,8 +31,10 @@ export let emptyProduct: Product = {
 
 export let emptyBoughtProduct: BoughtProduct = {
     id: -1,
-    product: emptyProduct,
+    productId: -1,
+    name: '',
     price: -1,
+    image: '',
 }
 
 export interface Order {
@@ -116,6 +120,11 @@ export interface User {
     name: string,
     surname: string,
     roles: Array<Role>,
+}
+
+export interface Credentials {
+    user: User,
+    token: string,
 }
 
 export const defaultUser: User = {

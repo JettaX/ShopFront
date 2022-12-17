@@ -1,3 +1,6 @@
+import {apiTokenCheck} from "../api/AuthApi";
+import {AxiosPromise, AxiosResponse} from "axios";
+
 export function getToken(): string {
     let token = localStorage.getItem('token');
     if (token !== null) {
@@ -16,4 +19,8 @@ export function deleteToken(): void {
 
 export function isTokenExist(): boolean {
     return getToken() !== '';
+}
+
+export function isTokenValid(): AxiosPromise {
+    return apiTokenCheck(getToken());
 }

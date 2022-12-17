@@ -1,6 +1,6 @@
 import {Field, Form, Formik} from "formik";
-import {useAuth} from "../util/Auth";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useAuth} from "../auth/Auth";
+import {useNavigate} from "react-router-dom";
 
 interface loginInit {
     login: string,
@@ -9,10 +9,9 @@ interface loginInit {
 
 export function Login() {
     let navigate = useNavigate();
-    let location = useLocation();
     let auth = useAuth();
 
-    let from = location.state?.from?.pathname || "/home";
+    let from = "/catalog";
 
     return (
         <Formik initialValues={{
@@ -22,7 +21,7 @@ export function Login() {
                 onSubmit={(values: loginInit) => {
                     auth.signin(values.login, values.password, () => {
                         console.log("login" + auth.user)
-                        navigate(from, { replace: true });
+                        navigate(from, { replace: true});
                     })
                 }}>
             <Form>

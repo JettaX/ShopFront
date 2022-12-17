@@ -3,6 +3,6 @@ import {getToken} from "../util/TokenUtil";
 
 const orders = axiosCustom('http://localhost:8081/api/orders', getToken());
 
-export const getUserOrders = (userId: number) => orders.get(`/getUserOrders/${userId}`);
+export const apiGetUserOrders = (userId: number | undefined) => orders.get(`/getUserOrders/${userId}`);
 
-export const getCountOfBought = (productId: number) => orders.get(`/getCountOfBought/${productId}`);
+export const apiGetCountOfBought = (productId: number) => orders.get(`/getCountOfBought/${productId}`);

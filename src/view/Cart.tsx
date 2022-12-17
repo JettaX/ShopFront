@@ -2,7 +2,7 @@ import {CartCard} from "./CartCard";
 import {CartBuyForm} from "./CartBuyForm";
 import {useEffect, useState} from "react";
 import {emptyCart} from "../interfaces";
-import {getCart} from "../api/CartApi";
+import {apiGetCart} from "../api/CartApi";
 
 export function Cart() {
     const [cart, setCart] = useState(emptyCart)
@@ -10,7 +10,7 @@ export function Cart() {
 
     useEffect(() => {
         if (!isDone) {
-            getCart().then(data => {
+            apiGetCart().then(data => {
                     if (data.data != null) {
                         setCart(data.data);
                     }

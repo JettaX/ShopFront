@@ -1,4 +1,4 @@
-import {deleteProductById} from "../api/ProductApi";
+import {apiDeleteProductById} from "../api/ProductApi";
 import {useState} from "react";
 import {emptyProduct} from "../interfaces";
 import {Catalog} from "./Catalog";

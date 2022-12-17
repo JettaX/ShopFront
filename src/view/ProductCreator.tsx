@@ -1,6 +1,6 @@
 import {Field, Form, Formik} from "formik";
 import {emptyProduct, newProduct} from "../interfaces";
-import {createProduct} from "../api/ProductApi";
+import {apiCreateProduct} from "../api/ProductApi";
 import {ProductForm} from "./ProductForm";
 
 export function ProductCreator() {
@@ -10,7 +10,7 @@ export function ProductCreator() {
                  style={{maxWidth: "50rem"}}>
                 <Formik initialValues={emptyProduct}
                         onSubmit={(values: newProduct) => {
-                            createProduct(values).then(r => {
+                            apiCreateProduct(values).then(r => {
                                 if (r.status === 200) {
                                     console.log(values)
                                     console.log(r.data)

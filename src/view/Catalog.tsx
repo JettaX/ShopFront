@@ -3,8 +3,8 @@ import {defaultFilter, emptyProduct, Filter, PageProduct, Product} from "../inte
 import {CatalogCard} from "./CatalogCard";
 import {CatalogFilter} from "./CatalogFilter";
 import {CatalogPagination} from "./CatalogPagination";
-import {deleteProductById, getProducts} from "../api/ProductApi";
-import {useAuth} from "../util/Auth";
+import {apiDeleteProductById, apiGetProducts} from "../api/ProductApi";
+import {useAuth} from "../auth/Auth";
 import {AxiosResponse} from "axios";
 
 const DEFAULT_PAGE = 0;
@@ -20,7 +20,6 @@ export function Catalog(props: CatalogProps) {
     const [page, setPage] = useState(DEFAULT_PAGE)
     const [pages, setPages] = useState(DEFAULT_PAGES)
     const [limit] = useState(20)
-    let auth = useAuth();
     let changing = props.isChanging === undefined ? false : props.isChanging;
 
     function filterChanged(filter: Filter) {
@@ -29,7 +28,7 @@ export function Catalog(props: CatalogProps) {
     }
 
     function deleteHandler(id: number) {
-        deleteProductById(id).then(r => {
+        apiDeleteProductById(id).then(r => {
                 if (r.status === 200) {
                     setProducts(Products.filter(product => product.id !== id));
                 }
@@ -38,7 +37,7 @@ export function Catalog(props: CatalogProps) {
     }
 
     useEffect(() => {
-            getProducts(Filter, page, limit)
+            apiGetProducts(Filter, page, limit)
                 .then((page: AxiosResponse<PageProduct>) => {
                     if (page.data.content !== undefined) {
                         setProducts(page.data.content);

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getUsers} from "../api/UserApi";
+import {apiGetUsers} from "../api/UserApi";
 import {defaultUser} from "../interfaces";
 import {FunctionMenuAllUsersCard} from "./FunctionMenuAllUsersCard";
 
@@ -9,7 +9,7 @@ export function FunctionMenuAllUsers() {
 
     useEffect(() => {
             if (!isLoad) {
-                getUsers().then(users => {
+                apiGetUsers().then(users => {
                     setUsers(users.data);
                     setLoad(true);
                 })
@@ -20,7 +20,7 @@ export function FunctionMenuAllUsers() {
         <div className="d-flex w-100 justify-content-start">
             <ol className="d-flex">
                 {
-                    users.map(user => <FunctionMenuAllUsersCard user={user}></FunctionMenuAllUsersCard>)
+                    users.map(user => <FunctionMenuAllUsersCard key={user.id} user={user}></FunctionMenuAllUsersCard>)
                 }
 
             </ol>

@@ -1,6 +1,7 @@
 import {CartItem} from "../interfaces";
-import {isExistInCart, removeItem, updateQuantity} from "../api/CartApi";
+import {apiRemoveItem, apiUpdateQuantity} from "../api/CartApi";
 import {useState} from "react";
+import {useAuth} from "../auth/Auth";
 
 export interface ProductCart {
     product: CartItem;
@@ -10,11 +11,11 @@ export interface ProductCart {
 export function CartCard(props: ProductCart) {
     const [quantity, setQuantity] = useState(props.product.quantity);
     const [product, setProduct] = useState(props.product);
-
+    let auth = useAuth();
 
     const handleChange = (event: any) => {
         setQuantity(event.target.value);
-        updateQuantity(product, event.target.value).then((data) => {
+        apiUpdateQuantity(product, event.target.value).then((data) => {
             setProduct(data.data);
         })
     }
@@ -32,7 +33,7 @@ export function CartCard(props: ProductCart) {
                             <p className="card-text"><small
                                 className="text-muted">{product.product.price} rub</small></p>
                             <button type="button" onClick={() => {
-                                removeItem(product.product).then(resp => resp.status === 200 ? props.onReloadCart() : false);
+                                apiRemoveItem(product.product).then(resp => resp.status === 200 ? props.onReloadCart() : false);
                             }} className="btn btn-danger">Delete
                             </button>
                         </div>
