@@ -107,7 +107,7 @@ export function Header() {
                     <Route path="/logout" element={<RequireAuth><Logout/></RequireAuth>}/>
                     <Route path="/cart" element={<RequireAuth><Cart/></RequireAuth>}/>
                     <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
-                    <Route path="/product/:name/:id" element={<RequireAuth><ProductPage/></RequireAuth>}/>
+                    <Route path="/product/:name/:id" element={<ProductPage/>}/>
                     <Route path="/profile/orders" element={<RequireAuth><Orders/></RequireAuth>}/>
                 </Route>
             </Routes>

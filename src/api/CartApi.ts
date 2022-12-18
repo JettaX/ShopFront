@@ -8,7 +8,7 @@ const cart = axiosCustom('http://localhost:8081/api/cart', getToken());
 
 export const apiAddItemToCart = (product: CartItem) => cart.post(`/${getUser()?.id}`, product);
 
-export const apiUpdateQuantity = (product: CartItem, quantity: number) => cart.patch(`/${getUser()?.id}/${product.product.id}/${quantity}`)
+export const apiUpdateQuantity = (product: CartItem, quantity: number) => cart.patch(`/${getUser()?.id}/${product.product.id}/${quantity.toString()}`)
 
 export const apiClearCart = () => cart.delete(`/clear/${getUser()?.id}`);
 

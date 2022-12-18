@@ -1,10 +1,17 @@
 import {Cart} from "../interfaces";
+import {useEffect, useState} from "react";
 
 interface CartBuyFormProps {
     cart: Cart,
 }
 
 export function CartBuyForm(props: CartBuyFormProps) {
+    const [price, setPrice] = useState(getTotalPrice());
+
+    useEffect( () => {
+        setPrice(getTotalPrice());
+    }, [props.cart.products]);
+
     function getTotalPrice() {
         if (props.cart.products.length < 1) {
             return 0;
@@ -19,7 +26,7 @@ export function CartBuyForm(props: CartBuyFormProps) {
         <div className="card text-center" style={{width: "10rem;"}}>
             <div className="card-body">
                 <h5 className="card-title">Total price</h5>
-                <p className="card-text">{getTotalPrice()}</p>
+                <p className="card-text">{price}</p>
                 <a href="#" className="btn btn-success">Buy</a>
             </div>
         </div>

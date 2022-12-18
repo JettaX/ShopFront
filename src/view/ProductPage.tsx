@@ -12,9 +12,7 @@ export interface ProductCard {
 }
 
 export function ProductPage() {
-    const [Product, setProduct] = useState({
-        product: emptyProduct,
-    })
+    const [Product, setProduct] = useState(emptyProduct)
     const [load, setLoad] = useState({
         isLoad: false,
     });
@@ -23,7 +21,7 @@ export function ProductPage() {
     useEffect(() => {
             if (!load.isLoad && id !== undefined) {
                 apiGetProductById(id).then((product) => {
-                    setProduct({product: product.data});
+                    setProduct(product.data);
                 })
                 setLoad({isLoad: true});
             }
@@ -33,15 +31,15 @@ export function ProductPage() {
     return (
         <div className="m-2">
             <div className="row align-items-start">
-                <FunctionalPanelOnCatalogCard productId={Product.product.id}/>
+                <FunctionalPanelOnCatalogCard productId={Product.id}/>
                 <div className="col flex-grow-1">
-                    <ProductPageTitleCard product={Product.product}/>
+                    <ProductPageTitleCard product={Product}/>
                 </div>
                 <div className="col flex-grow-0">
-                    <ProductPageBuy product={Product.product}/>
+                    <ProductPageBuy product={Product}/>
                 </div>
             </div>
-            <ProductPageDescriptionCard product={Product.product}/>
+            <ProductPageDescriptionCard product={Product}/>
         </div>
     )
 }
