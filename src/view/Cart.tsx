@@ -50,7 +50,7 @@ export function Cart() {
                         }
                     </div>
                     <div className="col-2">
-                        <CartBuyForm cart={cart}/>
+                        <CartBuyForm onReloadCart={onClearCart} cart={cart}/>
                     </div>
                 </div>
             </div>

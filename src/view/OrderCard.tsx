@@ -16,7 +16,8 @@ export function OrderCard(props: OrderCardProps) {
                     <div className="col-md-8">
                         <div className="card-body row">
                             <h5 className="card-title">{props.product.name}</h5>
-                            <b className="card-text">{props.product.price} rub</b>
+                            <b className="card-text">Price: {props.product.price} Rub</b>
+                            <p className="card-text">Qty: {props.product.quantity}</p>
                         </div>
                     </div>
                 </div>

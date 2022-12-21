@@ -15,6 +15,9 @@ import {FunctionMenuAllUsers} from "./FunctionMenuAllUsers";
 import {FunctionMenuProductChanger} from "./FunctionMenuProductChanger";
 import {FunctionMenuProductChangerForm} from "./FunctionMenuProductChangerForm";
 import {RequireRoleADMIN, useRole} from "../auth/Role";
+import {HeaderLinkProfile} from "./HeaderLinkProfile";
+import {HeaderLinkCart} from "./HeaderLinkCart";
+import {HeaderLinkAuth} from "./HeaderLinkAuth";
 
 export function Header() {
     let auth = useAuth();
@@ -46,13 +49,13 @@ export function Header() {
                     </form>
                     <div className="navbar-nav">
                         <Link className="nav-link" to="/cart">
-                            Cart
+                            <HeaderLinkCart/>
                         </Link>
                         <Link className="nav-link" to="/profile">
-                            Profile
+                            <HeaderLinkProfile/>
                         </Link>
                         <Link className="nav-link" to={!auth.isAuth ? "/login" : "/logout"}>
-                            {!auth.isAuth ? "Login" : "Logout"}
+                            <HeaderLinkAuth/>
                         </Link>
                     </div>
                 </div>

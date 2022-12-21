@@ -12,6 +12,7 @@ export interface BoughtProduct {
     name: string,
     price: number,
     image: string,
+    quantity: number,
 }
 
 export interface newProduct {
@@ -35,6 +36,7 @@ export let emptyBoughtProduct: BoughtProduct = {
     name: '',
     price: -1,
     image: '',
+    quantity: 0,
 }
 
 export interface Order {
