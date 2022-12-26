@@ -4,13 +4,13 @@ import {axiosCustom} from "./AxiosConfig";
 import {getToken} from "../util/TokenUtil";
 import {getUser} from "../util/UserUtil";
 
-const cart = axiosCustom('http://localhost:8081/api/cart', getToken());
+const cart = axiosCustom('http://localhost:8082/api/cart', getToken());
 
 export const apiAddItemToCart = (product: CartItem) => cart.post(`/${getUser()?.id}`, product);
 
 export const apiUpdateQuantity = (product: CartItem, quantity: number) => cart.patch(`/${getUser()?.id}/${product.product.id}/${quantity.toString()}`)
 
-export const apiClearCart = () => cart.delete(`/clear/${getUser()?.id}`);
+export const apiClearCart = () => cart.get(`/clear/${getUser()?.id}`);
 
 export const apiGetCart = () => cart.get(`/${getUser()?.id}`);
 
