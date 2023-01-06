@@ -4,13 +4,16 @@ import {BrowserRouter} from "react-router-dom";
 import {Header} from "./view/Header";
 import {AuthProvider} from "./auth/Auth";
 import {RoleProvider} from "./auth/Role";
+import {SearchProvider} from "./context/Search";
 
 function App() {
     return (
         <BrowserRouter>
             <AuthProvider>
                 <RoleProvider>
-                    <Header/>
+                    <SearchProvider>
+                        <Header/>
+                    </SearchProvider>
                 </RoleProvider>
             </AuthProvider>
         </BrowserRouter>

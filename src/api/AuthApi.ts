@@ -1,7 +1,7 @@
 import {axiosCustomTokenOff} from "./AxiosConfig";
 import {getToken} from "../util/TokenUtil";
 
-const auth = axiosCustomTokenOff('http://localhost:8081/api/auth');
+const auth = axiosCustomTokenOff('http://localhost:8083/auth/api/auth');
 
 export const apiAuthWithPassword = (login: string, password: string) => auth.post("", "", {
     headers: {

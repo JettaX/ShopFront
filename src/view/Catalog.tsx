@@ -6,6 +6,7 @@ import {CatalogPagination} from "./CatalogPagination";
 import {apiDeleteProductById, apiGetProducts} from "../api/ProductApi";
 import {useAuth} from "../auth/Auth";
 import {AxiosResponse} from "axios";
+import {useSearch} from "../context/Search";
 
 const DEFAULT_PAGE = 0;
 const DEFAULT_PAGES = 1;
@@ -21,6 +22,7 @@ export function Catalog(props: CatalogProps) {
     const [pages, setPages] = useState(DEFAULT_PAGES)
     const [limit] = useState(20)
     let changing = props.isChanging === undefined ? false : props.isChanging;
+    let search = useSearch();
 
     function filterChanged(filter: Filter) {
         setFilter(filter)
@@ -37,7 +39,7 @@ export function Catalog(props: CatalogProps) {
     }
 
     useEffect(() => {
-            apiGetProducts(Filter, page, limit)
+            apiGetProducts(Filter, page, limit, search.search)
                 .then((page: AxiosResponse<PageProduct>) => {
                     if (page.data.content !== undefined) {
                         setProducts(page.data.content);
@@ -46,7 +48,7 @@ export function Catalog(props: CatalogProps) {
                         setPages(page.data.totalPages);
                     }
                 })
-        }, [Filter, page]
+        }, [Filter, page, search.search]
     );
 
 

@@ -41,14 +41,16 @@ export let emptyBoughtProduct: BoughtProduct = {
 
 export interface Order {
     id: number,
-    user: any,
+    username: string,
     products: Array<BoughtProduct>,
+    totalPrice: number,
 }
 
 export let emptyOrder: Order = {
     id: -1,
-    user: "",
+    username: "",
     products: Array.of(emptyBoughtProduct),
+    totalPrice: 0,
 }
 
 export interface Filter {
@@ -106,10 +108,12 @@ export const emptyCartItem: CartItem = {
 
 export interface Cart {
     products: Array<CartItem>,
+    total: number,
 }
 
 export const emptyCart: Cart = {
     products: Array.of(),
+    total: 0,
 }
 
 export interface CartTransfer {

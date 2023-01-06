@@ -2,13 +2,14 @@ import {axiosCustom} from "./AxiosConfig";
 import {Filter, newProduct, Product} from "../interfaces";
 import {getToken} from "../util/TokenUtil";
 
-const products = axiosCustom('http://localhost:8081/api/products', getToken());
+const products = axiosCustom('http://localhost:8083/core/api/products', getToken());
 
-export const apiGetProducts = (filter: Filter, page: number, limit: number) => products('', {
+export const apiGetProducts = (filter: Filter, page: number, limit: number, search: string) => products('', {
     method: 'get',
     params: {
         maxPrice: filter.maxPrice,
         minPrice: filter.minPrice,
+        name: search,
         page: page,
         limit: limit,
     },

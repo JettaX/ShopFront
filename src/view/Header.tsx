@@ -18,6 +18,7 @@ import {RequireRoleADMIN, useRole} from "../auth/Role";
 import {HeaderLinkProfile} from "./HeaderLinkProfile";
 import {HeaderLinkCart} from "./HeaderLinkCart";
 import {HeaderLinkAuth} from "./HeaderLinkAuth";
+import {SearchTab} from "./SearchTab";
 
 export function Header() {
     let auth = useAuth();
@@ -25,7 +26,7 @@ export function Header() {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-light mb-3">
+            <nav className="navbar navbar-expand-sm bg-light mb-3">
                 <div className="container-fluid">
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <div className="navbar-nav">
@@ -40,13 +41,7 @@ export function Header() {
                             </Link>
                         </div>
                     </div>
-                    <form className="container" role="search">
-                        <div className="input-group">
-                            <input className="form-control" type="search" placeholder="Search"
-                                   aria-label="Search"/>
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </div>
-                    </form>
+                    <SearchTab/>
                     <div className="navbar-nav">
                         <Link className="nav-link" to="/cart">
                             <HeaderLinkCart/>

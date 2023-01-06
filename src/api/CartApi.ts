@@ -4,7 +4,7 @@ import {axiosCustom} from "./AxiosConfig";
 import {getToken} from "../util/TokenUtil";
 import {getUser} from "../util/UserUtil";
 
-const cart = axiosCustom('http://localhost:8082/api/cart', getToken());
+const cart = axiosCustom('http://localhost:8083/cart/api/cart', getToken());
 
 export const apiAddItemToCart = (product: CartItem) => cart.post(`/${getUser()?.id}`, product);
 
