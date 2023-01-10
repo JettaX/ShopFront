@@ -13,7 +13,6 @@ export function CartCard(props: ProductCart) {
     const [quantity, setQuantity] = useState(props.product.quantity);
     const [product, setProduct] = useState(props.product);
     const [isQuantityMore, setQuantityMore] = useState(false);
-    let auth = useAuth();
 
     useEffect(() => {
         if (quantity > 9) {
@@ -22,7 +21,7 @@ export function CartCard(props: ProductCart) {
     })
 
     const handleChange = (event: any) => {
-        let value = quantityValidate(event.target.value);
+        let value = quantityValidate(event.currentTarget.value);
         if (value < 10) {
             apiUpdateQuantity(product, value).then((data) => {
                 setProduct(data.data);
@@ -35,7 +34,7 @@ export function CartCard(props: ProductCart) {
     }
 
     const customHandleChange = (event: any) => {
-        let value = quantityValidate(event.target.value);
+        let value = quantityValidate(event.currentTarget.value);
         apiUpdateQuantity(product, value).then((data) => {
             setProduct(data.data);
             setQuantity(value);
@@ -54,7 +53,9 @@ export function CartCard(props: ProductCart) {
                         <div className="card-body">
                             <h5 className="card-title">{product.product.name}</h5>
                             <p className="card-text"><small
-                                className="text-muted">{product.product.price} rub</small></p>
+                                className="text-muted">{product.product.price} ₽/ one</small></p>
+                            <p className="card-text"><small
+                                className="text-muted">{product.totalPrice} ₽/ total</small></p>
                             <button type="button" onClick={() => {
                                 apiRemoveItem(product.product).then(resp => resp.status === 200 ? props.onReloadCart() : false);
                             }} className="btn btn-danger">Delete

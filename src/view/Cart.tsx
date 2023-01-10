@@ -19,19 +19,19 @@ export function Cart() {
                         setCart(data.data);
                         setEmpty(false)
                     }
+                    setIsDone(true);
                 }
             )
-            setIsDone(true);
         }
     }, [isDone])
 
     function onReloadContext() {
         setIsDone(false);
-
     }
 
     function onClearCart() {
         setCart(emptyCart);
+        setEmpty(true);
         onReloadContext();
     }
 

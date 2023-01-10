@@ -1,6 +1,4 @@
 
-F
-src/view/OrderCard.tsx,b\6\b61ff0479b7da85f2d0322aab32bf234681ef506
 B
 src/api/AuthApi.ts,9\b\9b5959cbfb318ea75b398e6a8869944e1c26e781
 B
@@ -20,10 +18,6 @@ C
 src/api/OrderApi.ts,6\7\678db7288ec8915ab7e2c385aa5fb6703fa49134
 F
 src/api/AxiosConfig.ts,a\6\a67aa19639c38ab88ad57c3825b749b3136a3e81
-H
-src/view/CartBuyForm.tsx,d\c\dcf27bd9bcd141a27d1acc606e9e77df275b8333
-A
-src/interfaces.ts,c\2\c2a747cf763ba8bccb066834ac0f3fe4848b2231
 D
 src/dev/previews.tsx,3\d\3d612cf7865875320010476ae47eda1a4e4ac310
 A
@@ -38,3 +32,25 @@ N
 src/view/HeaderLinkProfile.tsx,5\9\5919f330e8788bfc7488936a326af5356fd004de
 C
 src/view/Logout.tsx,4\5\458fb8cc94b028fcc078affc45633ef9397eaeb8
+C
+src/view/Header.tsx,c\1\c1c74b91e6a72666dc00297c699fdc9836d23b15
+J
+src/view/CatalogFilter.tsx,6\7\671d5397251dafa9c7a5e014b4fe77a7e6cb92f7
+F
+src/context/Search.tsx,d\4\d44b9a5fa9b6ccf17c29fd63e7b184bc7adfd250
+F
+src/view/SearchTab.tsx,c\d\cdf18ca1e25d0070ec1f23bfd436ffbd3aace83a
+D
+src/view/Catalog.tsx,d\e\decf03338c73d26f84b2fcc17feaf7e73a5c6ed5
+E
+src/api/ProductApi.ts,c\8\c8d879968d836cb1942f1d88da8110617bde822d
+H
+src/view/CatalogCard.tsx,1\3\137a08694fa40b511e6ed04043e7119515cceff0
+K
+src/view/ProductPageBuy.tsx,e\7\e7cfb196d0af820cfec37ad4ea7fde6c2979ce14
+M
+src/view/CartFunctionMenu.tsx,c\0\c0290405ae9b09e5b3e5ccd3a6a21f2f0ff26287
+H
+src/view/CartBuyForm.tsx,d\c\dcf27bd9bcd141a27d1acc606e9e77df275b8333
+A
+src/view/Cart.tsx,b\4\b476148eaabc399d0ea7a735efab841201566ce3

@@ -15,6 +15,7 @@ const item = (product: Product): CartItem => {
     return {
         product: product,
         quantity: 1,
+        totalPrice: product.price
     }
 }
 
@@ -34,9 +35,8 @@ export function CatalogCard(props: ProductCard) {
                 <Link to={`/product/${props.product.name}/${props.product.id}`} className="page-link">
                     <h4 className="card-title">{props.product.name}</h4>
                 </Link>
-                <b className="card-subtitle">{props.product.price} rub</b>
-                <p className="card-text">{props.product.description.slice(0, 50)}</p>
-                <div className="d-flex justify-content-between">
+                <b className="card-subtitle p-1 bg-success rounded-1 text-white mb-3">{props.product.price} ₽</b>
+                <div className="d-flex justify-content-between my-2">
                     <button className="btn btn-primary" disabled={!auth.isAuth} hidden={isCart || props.isChanging} onClick={() => {
                         apiAddItemToCart(ItemCart);
                         setIsCart(true)

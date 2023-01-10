@@ -13,6 +13,7 @@ export interface BoughtProduct {
     price: number,
     image: string,
     quantity: number,
+    totalPrice: number,
 }
 
 export interface newProduct {
@@ -37,6 +38,7 @@ export let emptyBoughtProduct: BoughtProduct = {
     price: -1,
     image: '',
     quantity: 0,
+    totalPrice: 0,
 }
 
 export interface Order {
@@ -99,11 +101,13 @@ export interface PageProduct {
 export interface CartItem {
     product: Product,
     quantity: number,
+    totalPrice: number,
 }
 
 export const emptyCartItem: CartItem = {
     product: emptyProduct,
     quantity: 0,
+    totalPrice: 0,
 }
 
 export interface Cart {
