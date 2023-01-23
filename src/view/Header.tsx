@@ -63,6 +63,7 @@ export function Header() {
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/catalog" element={<Catalog/>}/>
+                    <Route path="/cart" element={<Cart/>}/>
                 </Route>
 
                 {/*auth and has any private roles rotes*/}
@@ -103,7 +104,6 @@ export function Header() {
                 {/*auth rotes*/}
                 <Route>
                     <Route path="/logout" element={<RequireAuth><Logout/></RequireAuth>}/>
-                    <Route path="/cart" element={<RequireAuth><Cart/></RequireAuth>}/>
                     <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
                     <Route path="/product/:name/:id" element={<ProductPage/>}/>
                     <Route path="/profile/orders" element={<RequireAuth><Orders/></RequireAuth>}/>

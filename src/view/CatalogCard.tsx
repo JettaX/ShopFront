@@ -1,6 +1,6 @@
-import {CartItem, emptyCartItem, Product} from "../interfaces";
+import {CartItem, Product} from "../interfaces";
 import {Link} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {apiAddItemToCart, apiIsExistInCart} from "../api/CartApi";
 import {useAuth} from "../auth/Auth";
 
@@ -25,10 +25,10 @@ export function CatalogCard(props: ProductCard) {
     let auth = useAuth();
 
     return (
-        <div className="card row m-2" style={{width: "18rem"}}>
+        <div className="card row m-2" style={{width: "18rem", borderStyle: "none"}}>
             <div className="row flex-grow-1 align-self-center">
-                <div className="align-self-center">
-                    <img src={props.product.image} className="card-img-top" alt={props.product.name}/>
+                <div className="align-self-center" style={{maxHeight: "200px"}}>
+                    <img src={props.product.image} style={{maxHeight: "inherit"}} className="card-img-top" alt={props.product.name}/>
                 </div>
             </div>
             <div className="card-body flex-grow-0">
@@ -37,8 +37,8 @@ export function CatalogCard(props: ProductCard) {
                 </Link>
                 <b className="card-subtitle p-1 bg-success rounded-1 text-white mb-3">{props.product.price} ₽</b>
                 <div className="d-flex justify-content-between my-2">
-                    <button className="btn btn-primary" disabled={!auth.isAuth} hidden={isCart || props.isChanging} onClick={() => {
-                        apiAddItemToCart(ItemCart);
+                    <button className="btn btn-primary" hidden={isCart || props.isChanging} onClick={() => {
+                        apiAddItemToCart(ItemCart, auth.isAuth);
                         setIsCart(true)
                     }}>add to cart
                     </button>

@@ -2,8 +2,6 @@
 B
 src/api/AuthApi.ts,9\b\9b5959cbfb318ea75b398e6a8869944e1c26e781
 B
-src/api/CartApi.ts,8\4\840c75be439ff537daa2caf0ca9bdfa12f03db91
-B
 src/api/UserApi.ts,0\3\03dc85b0ca708a8fc71c8442077e5b54b6693e69
 :
 
@@ -24,33 +22,26 @@ A
 src/auth/Roles.ts,e\3\e365b0581db421b4ec499a3e5a2f99ff9801029e
 ;
 src/App.tsx,8\3\835da56f32df714aaed6285a5b7fc3a7807851e4
-H
-src/auth/AuthProvider.ts,f\1\f1ccd451c40f530f25a297d8fc9220ee716092c6
-A
-src/auth/Role.tsx,8\e\8ed4f47933c0b631e958d6f6c216d9137d2e3371
 N
 src/view/HeaderLinkProfile.tsx,5\9\5919f330e8788bfc7488936a326af5356fd004de
 C
 src/view/Logout.tsx,4\5\458fb8cc94b028fcc078affc45633ef9397eaeb8
-C
-src/view/Header.tsx,c\1\c1c74b91e6a72666dc00297c699fdc9836d23b15
 J
 src/view/CatalogFilter.tsx,6\7\671d5397251dafa9c7a5e014b4fe77a7e6cb92f7
-F
-src/context/Search.tsx,d\4\d44b9a5fa9b6ccf17c29fd63e7b184bc7adfd250
 F
 src/view/SearchTab.tsx,c\d\cdf18ca1e25d0070ec1f23bfd436ffbd3aace83a
 D
 src/view/Catalog.tsx,d\e\decf03338c73d26f84b2fcc17feaf7e73a5c6ed5
 E
 src/api/ProductApi.ts,c\8\c8d879968d836cb1942f1d88da8110617bde822d
-H
-src/view/CatalogCard.tsx,1\3\137a08694fa40b511e6ed04043e7119515cceff0
-K
-src/view/ProductPageBuy.tsx,e\7\e7cfb196d0af820cfec37ad4ea7fde6c2979ce14
-M
-src/view/CartFunctionMenu.tsx,c\0\c0290405ae9b09e5b3e5ccd3a6a21f2f0ff26287
-H
-src/view/CartBuyForm.tsx,d\c\dcf27bd9bcd141a27d1acc606e9e77df275b8333
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 A
-src/view/Cart.tsx,b\4\b476148eaabc399d0ea7a735efab841201566ce3
+src/interfaces.ts,c\2\c2a747cf763ba8bccb066834ac0f3fe4848b2231
+C
+src/view/Orders.tsx,b\6\b6fa3f1d69dd67703c339ccd8b2e40e3261142d8
+E
+src/view/OrderTab.tsx,a\8\a8afa376724de2fbadf87540555a585eae9d841a
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a

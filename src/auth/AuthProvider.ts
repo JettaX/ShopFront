@@ -3,6 +3,7 @@ import {deleteUser, getUser, setUser} from "../util/UserUtil";
 import {apiAuthWithPassword} from "../api/AuthApi";
 import {AxiosResponse} from "axios";
 import {Credentials} from "../interfaces";
+import {deleteGuestId} from "../util/GuestUtil";
 
 
 export const AuthPasswordProvider = {
@@ -14,6 +15,7 @@ export const AuthPasswordProvider = {
                 console.log("Login successful");
                 setToken(cred.data.token);
                 setUser(cred.data.user);
+                deleteGuestId();
                 AuthPasswordProvider.isAuthenticated = true;
                 callback();
             }

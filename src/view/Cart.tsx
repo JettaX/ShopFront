@@ -4,15 +4,17 @@ import {useEffect, useState} from "react";
 import {emptyCart} from "../interfaces";
 import {apiGetCart} from "../api/CartApi";
 import {CartFunctionMenu} from "./CartFunctionMenu";
+import {useAuth} from "../auth/Auth";
 
 export function Cart() {
     const [cart, setCart] = useState(emptyCart)
     const [isDone, setIsDone] = useState(false)
     const [isEmpty, setEmpty] = useState(true)
+    let auth = useAuth();
 
     useEffect(() => {
         if (!isDone) {
-            apiGetCart().then((data) => {
+            apiGetCart(auth.isAuth).then((data) => {
                     if (data.data === null || (data.data.products.length === 0)) {
                         setEmpty(true)
                     } else {
