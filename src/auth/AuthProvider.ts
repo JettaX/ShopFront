@@ -4,6 +4,7 @@ import {apiAuthWithPassword} from "../api/AuthApi";
 import {AxiosResponse} from "axios";
 import {Credentials} from "../interfaces";
 import {deleteGuestId} from "../util/GuestUtil";
+import {apiMergeGuestCart} from "../api/CartApi";
 
 
 export const AuthPasswordProvider = {
@@ -15,7 +16,7 @@ export const AuthPasswordProvider = {
                 console.log("Login successful");
                 setToken(cred.data.token);
                 setUser(cred.data.user);
-                deleteGuestId();
+                apiMergeGuestCart(cred.data.user.id).then(() => console.log("Guest cart merged"));
                 AuthPasswordProvider.isAuthenticated = true;
                 callback();
             }

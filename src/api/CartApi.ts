@@ -1,11 +1,10 @@
 import {CartItem, Product} from "../interfaces";
-import {axiosCustom, axiosCustomTokenOff} from "./AxiosConfig";
+import {axiosCustom} from "./AxiosConfig";
 import {getToken} from "../util/TokenUtil";
 import {getUser} from "../util/UserUtil";
-import {getGuestId, setGuestId} from "../util/GuestUtil";
+import {getGuestId} from "../util/GuestUtil";
 
 const cart = axiosCustom('http://localhost:8083/cart/api/cart', getToken());
-const guestCart = axiosCustomTokenOff('http://localhost:8083/cart/api/cart/guest');
 
 export const apiAddItemToCart = (product: CartItem, isAuth: boolean) => addItemToCart(product, isAuth);
 
@@ -13,7 +12,7 @@ const addItemToCart = (product: CartItem, isAuth: boolean) => {
     if (isAuth) {
         return cart.post(`/${getUser()?.id}`, product);
     } else {
-        return guestCart.post(`/${getGuestId()}`, product);
+        return cart.post(`/${getGuestId()}`, product);
     }
 }
 export const apiUpdateQuantity = (product: CartItem, quantity: number, isAuth: boolean) => updateQuantity(product, quantity, isAuth);
@@ -22,7 +21,7 @@ const updateQuantity = (product: CartItem, quantity: number, isAuth: boolean) =>
     if (isAuth) {
         return cart.patch(`/${getUser()?.id}/${product.product.id}/${quantity.toString()}`);
     } else {
-            return guestCart.patch(`/${getGuestId()}/${product.product.id}/${quantity.toString()}`);
+        return cart.patch(`/${getGuestId()}/${product.product.id}/${quantity.toString()}`);
     }
 }
 
@@ -32,7 +31,7 @@ const clearCart = (isAuth: boolean) => {
     if (isAuth) {
         return cart.get(`/clear/${getUser()?.id}`);
     } else {
-            return guestCart.get(`/clear/${getGuestId()}`);
+        return cart.get(`/clear/${getGuestId()}`);
     }
 }
 
@@ -42,7 +41,7 @@ const getCart = (isAuth: boolean) => {
     if (isAuth) {
         return cart.get(`/${getUser()?.id}`);
     } else {
-            return guestCart.get(`/${getGuestId()}`);
+        return cart.get(`/${getGuestId()}`);
     }
 }
 
@@ -52,11 +51,11 @@ const removeItem = (product: Product, isAuth: boolean) => {
     if (isAuth) {
         return cart.delete(`/${getUser()?.id}/${product.id}`);
     } else {
-            return guestCart.delete(`/${getGuestId()}/${product.id}`);
+        return cart.delete(`/${getGuestId()}/${product.id}`);
     }
 }
 
-export const apiGetGuestId = () => guestCart.get('/generateId');
+export const apiMergeGuestCart = (userId: number) => cart.post(`/merge/${userId}/${getGuestId()}`);
 
 export function apiIsExistInCart(product: Product): boolean {
     return false;

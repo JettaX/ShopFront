@@ -1,7 +1,5 @@
 
 B
-src/api/AuthApi.ts,9\b\9b5959cbfb318ea75b398e6a8869944e1c26e781
-B
 src/api/UserApi.ts,0\3\03dc85b0ca708a8fc71c8442077e5b54b6693e69
 :
 
@@ -45,3 +43,31 @@ E
 src/view/OrderTab.tsx,a\8\a8afa376724de2fbadf87540555a585eae9d841a
 <
 package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+D
+src/cart/CartUtil.ts,7\2\7219a5ca5b936be4375d6365b433d07d4afe36bb
+E
+src/util/GuestUtil.ts,0\4\04dc21b51a82156870a86533189bb2b44517eabe
+D
+src/util/UserUtil.ts,e\7\e7fa7200a56efdf41a016c543433121412ed0089
+K
+src/view/ProductPageBuy.tsx,e\7\e7cfb196d0af820cfec37ad4ea7fde6c2979ce14
+A
+src/view/Cart.tsx,b\4\b476148eaabc399d0ea7a735efab841201566ce3
+E
+src/view/CartCard.tsx,6\c\6c9bc1f36347e277c97802fedfad0c42fa1a0715
+F
+src/context/Search.tsx,d\4\d44b9a5fa9b6ccf17c29fd63e7b184bc7adfd250
+A
+src/auth/Role.tsx,8\e\8ed4f47933c0b631e958d6f6c216d9137d2e3371
+M
+src/view/CartFunctionMenu.tsx,c\0\c0290405ae9b09e5b3e5ccd3a6a21f2f0ff26287
+H
+src/view/CatalogCard.tsx,1\3\137a08694fa40b511e6ed04043e7119515cceff0
+C
+src/view/Header.tsx,c\1\c1c74b91e6a72666dc00297c699fdc9836d23b15
+H
+src/view/CartBuyForm.tsx,d\c\dcf27bd9bcd141a27d1acc606e9e77df275b8333
+F
+src/view/OrderCard.tsx,b\6\b61ff0479b7da85f2d0322aab32bf234681ef506
+B
+src/api/AuthApi.ts,9\b\9b5959cbfb318ea75b398e6a8869944e1c26e781

@@ -4,8 +4,7 @@ import {getUser} from "../util/UserUtil";
 import {User} from "../interfaces";
 import {AuthPasswordProvider} from "./AuthProvider";
 import {getGuestId, setGuestId} from "../util/GuestUtil";
-import {apiGetGuestId} from "../api/CartApi";
-import {Axios, AxiosResponse} from "axios";
+import {v4 as uuidv4} from 'uuid';
 
 export interface AuthContextType {
     user: User;
@@ -24,9 +23,7 @@ export function AuthProvider({children}: { children: React.ReactNode }) {
     React.useEffect(() => {
         console.log("Auth Provider");
         if (!isAuth && getGuestId() === null) {
-            apiGetGuestId().then((guestId: AxiosResponse<string>) => {
-                setGuestId(guestId.data);
-            });
+            setGuestId(uuidv4());
         }
     });
 
