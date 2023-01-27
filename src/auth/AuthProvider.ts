@@ -16,8 +16,8 @@ export const AuthPasswordProvider = {
                 console.log("Login successful");
                 setToken(cred.data.token);
                 setUser(cred.data.user);
-                apiMergeGuestCart(cred.data.user.id).then(() => console.log("Guest cart merged"));
                 AuthPasswordProvider.isAuthenticated = true;
+                apiMergeGuestCart(cred.data.token).then(() => console.log("Guest cart merged"));
                 callback();
             }
         })

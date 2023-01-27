@@ -5,6 +5,7 @@ import {User} from "../interfaces";
 import {AuthPasswordProvider} from "./AuthProvider";
 import {getGuestId, setGuestId} from "../util/GuestUtil";
 import {v4 as uuidv4} from 'uuid';
+import {apiMergeGuestCart} from "../api/CartApi";
 
 export interface AuthContextType {
     user: User;
